@@ -1,0 +1,4 @@
+.promptworld/
+__pycache__/
+*.pyc
+compiled/

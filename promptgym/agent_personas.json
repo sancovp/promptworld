@@ -1,0 +1,11 @@
+{
+  "_comment": "Per-agent DISPLAY NAME + AVATAR config (V2 #48). HOT-RELOADING: the server reads this live on each profile request (no restart, not baked into code) — edit a name or avatar filename here and it takes effect immediately, unless a user has set their own via the profile editor (a user override always wins). Avatars are filenames under promptgym/avatars/. Re-theme freely (Smiths/Djinni/...) by editing this file + each persona's promptgym/<type>/CLAUDE.md voice.",
+  "ceo": { "name": "CEO", "avatar": "ceo.png" },
+  "skill": { "name": "Skillwright", "avatar": "skill.png" },
+  "mcp": { "name": "Toolwright", "avatar": "mcp.png" },
+  "prompt": { "name": "Promptwright", "avatar": "prompt.png" },
+  "harness": { "name": "Harnesswright", "avatar": "harness.png" },
+  "team": { "name": "Teamwright", "avatar": "team.png" },
+  "workflow": { "name": "Flowwright", "avatar": "workflow.png" },
+  "operating_system": { "name": "Systemwright", "avatar": "operating_system.png" }
+}

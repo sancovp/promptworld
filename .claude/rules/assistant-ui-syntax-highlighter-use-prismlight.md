@@ -1,0 +1,1 @@
+# For syntax-highlighted markdown code in assistant-ui under Vite, wire `makeMarkdownText` with `makePrismLightSyntaxHighlighter` (PrismLight + `registerLanguage`) — NOT the AsyncLight variant, whose dynamic import Vite cannot bundle so code renders plain; and restore list markers in CSS (assistant-ui's reset strips `ul`/`ol` bullets).

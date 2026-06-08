@@ -1,0 +1,63 @@
+name: Refresh README badges
+
+# Per-repo analog of heaven-bml's ecosystem-readme-update.yml, EXTENDED to a single tier-2 unit.
+# Keeps the README's managed badge-block (stars / latest-release / last-updated) fresh BETWEEN
+# publishes — repo stats drift over time even when the source subdir does not change.
+#
+# This workflow + its generator are STAGED INTO each public repo by the publish flow
+# (scalable-publishing/bin/publish_unit.sh copies generate_unit_readme.py to .github/scripts/),
+# so the public repo is self-sufficient: it never reaches back into the private monorepo.
+#
+# It only ever touches the managed block between the AUTOGEN sentinels and the CHANGELOG —
+# hand-written README content is preserved. Commits only if something actually changed (no-drift).
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # daily 06:00 UTC, like the heaven-bml ecosystem refresh
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Regenerate README badge-block
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ ! -f .github/scripts/generate_unit_readme.py ]; then
+            echo "::warning::generator not staged (.github/scripts/generate_unit_readme.py missing) — skipping"
+            exit 0
+          fi
+          # --ref manual => badge refresh only, no new CHANGELOG entry (publishes own the changelog).
+          python .github/scripts/generate_unit_readme.py \
+            --repo "${GITHUB_REPOSITORY}" --dir . --ref manual
+
+      - name: Commit if changed
+        run: |
+          set -euo pipefail
+          git config user.email "readme-bot@sancrev.dev"
+          git config user.name "README Refresh Bot"
+          git add README.md CHANGELOG.md 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No README changes."
+          else
+            git commit -m "Refresh README badges ($(date -u +'%Y-%m-%d'))"
+            git push
+          fi

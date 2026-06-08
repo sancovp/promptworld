@@ -1,0 +1,28 @@
+# PromptWorld V1 — normal-host run config (the user's own machine).
+#
+# Build the image FIRST (it COPYs across monorepo dirs, so it needs a staged context):
+#     bash deploy/build.sh build
+# then run:
+#     docker compose -f deploy/docker-compose.yml up
+# and open http://localhost:3858  (chat with the CEO + Monaco file explorer over ./workspace).
+#
+# NOTE: this compose is for a NORMAL host (it bind-mounts paths). Inside mind_of_god (host docker
+# socket, no -v of mind_of_god paths) use `bash deploy/build.sh boot` instead (create -> docker cp
+# creds + workspace -> start).
+services:
+  promptworld:
+    image: promptworld:latest
+    container_name: promptworld
+    ports:
+      - "3858:3858"
+    # no environment block: PORT + DOCMIRROR_CARTON=0 are already defaulted in the image/entrypoint.
+    # no creds mount: the builder's subscription creds are BAKED into the image at build time.
+    # (To run on a DIFFERENT subscription, add a line under volumes:
+    #    - /path/to/.credentials.json:/creds/.credentials.json:ro
+    #  a mounted /creds OVERRIDES the baked creds via the entrypoint.)
+    volumes:
+      # the universal host workspace the agents read/write + Monaco edits (docker auto-creates it)
+      - /tmp/promptworld-workspace:/workspace
+    restart: unless-stopped
+# (no neo4j service: DOCMIRROR_CARTON=0 makes the journal file-only; add a neo4j service later
+#  only if a future feature needs the CartON graph at runtime.)

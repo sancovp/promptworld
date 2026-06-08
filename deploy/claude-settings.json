@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "doc-mirror-marketplace": {
+      "source": {
+        "source": "directory",
+        "path": "/opt/doc-mirror-plugin"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "doc-mirror@doc-mirror-marketplace": true
+  }
+}

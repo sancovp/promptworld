@@ -1,0 +1,33 @@
+# promptgym/<type>/ = a Claude-Code-native AIOS, scoped BY CWD (NO CLAUDE_CONFIG_DIR — mirrors the
+# CEO). The agent auto-injects <type>/CLAUDE.md (project memory, via the cwd->root walk) +
+# <type>/.claude/{skills,rules,agents} (native project-level discovery), and keeps its OWN per-dir
+# doc-mirror under <type>/docs/ + <type>/context/.
+#
+# VERSIONED (the AIOS source):
+#   <type>/CLAUDE.md
+#   <type>/.claude/{rules,agents,skills}/  AUTHORED content — force-added (`git add -f`): the
+#       monorepo ROOT .gitignore excludes every `.claude/`, so authored .claude content is
+#       committed with -f; the runtime symlinks below are NOT force-added, so they never commit.
+#   <type>/docs/{mirror,vision}, <type>/context/journal  (the per-dir doc-mirror layer)
+#
+# Doc-mirror skills + the universal-worker subagent are SYMLINKED into <type>/.claude/{skills,
+# agents}/ at agent init (env-specific runtime, regenerated per environment) — already excluded by
+# the root `.claude/` rule, so they never commit.
+
+# the shared convo registry for the gym agents (alias -> claude session_id)
+/.promptgym/
+# defensive: stray claude config/session cruft. The cwd-only model writes session state to the
+# USER config (~/.claude), NOT here — but keep these so any legacy scoped-runtime leftovers (from
+# the old CLAUDE_CONFIG_DIR=<dir> model) stay ignored.
+/*/.claude.json
+/*/.credentials.json
+/*/.last-cleanup
+/*/mcp-needs-auth-cache.json
+/*/projects/
+/*/sessions/
+/*/backups/
+/*/session-env/
+/*/shell-snapshots/
+/*/telemetry/
+/*/statsig/
+/*/todos/

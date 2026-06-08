@@ -1,0 +1,4 @@
+# vision: doc-mirror (topic — auto-created by `journal`)
+
+<!-- ===VISION DELTA: id-tagged appends below = the gap (`vision diff <m>`); `doc-mirror-commit --realizes <ids>` drops them on build === -->
+- [v1]  2026-06-08T17:13:11  INTENT: Baking /home/ceo/.claude/settings.json into the image (deploy/claude-settings.json) registering doc-mirror as a Claude Code plugin via directory-source marketplace -> /opt/doc-mirror-plugin + enabledPlugins. This is the canonical container-CC plugin registration Isaac demanded ('load the plugin into the Claude Code application directories in the container'). Additive: SDK agents keep getting it via plugins=/--plugin-dir; this gives the INTERACTIVE terminal claude the plugin too. Mirrors the host registration. Rebuild+reboot+verify via 'claude plugin list' (no LLM call, no OAuth risk).  tags:[doc-mirror, plugin, container, settings]

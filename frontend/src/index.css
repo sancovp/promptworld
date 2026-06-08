@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* shadcn/ui theme variables (HSL channels). The app forces the .dark class (main.tsx), so the
+   dark palette is what renders. We intentionally do NOT add a global `body { @apply bg-background }`
+   — the app's own dark body lives in styles.css; these vars only feed the shadcn editor components. */
+@layer base {
+  :root {
+    --background: 0 0% 97%;
+    --foreground: 240 37% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 37% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 37% 8%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 37% 8%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 240 5% 96%;
+    --accent-foreground: 240 37% 8%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 217 91% 60%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 222 14% 7%;
+    --foreground: 220 14% 92%;
+    --card: 220 16% 10%;
+    --card-foreground: 220 14% 92%;
+    --popover: 220 16% 11%;
+    --popover-foreground: 220 14% 92%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 16%;
+    --secondary-foreground: 220 14% 92%;
+    --muted: 220 14% 16%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 220 14% 18%;
+    --accent-foreground: 220 14% 92%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 14% 20%;
+    --input: 220 14% 20%;
+    --ring: 217 91% 60%;
+    --radius: 0.5rem;
+  }
+}
