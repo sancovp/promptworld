@@ -1,7 +1,7 @@
 {
   "name": "promptworld",
   "version": "1.0.0",
-  "description": "PromptWorld — the meta-compiler *World: a WrightMaster Engineer-CEO that has every skill plus a native subagent per component type (skill / mcp / harness / operating_system / prompt / team / workflow), and 7 PromptGym specialist AIOS agents, that compile / compose / publish prompt systems through the nomicon. Bundles the install-promptworld deploy WIZARD (the agent builds the docker image, boots the container running the Engineer-CEO + PromptGym + the assistant-ui chat / Monaco file explorer / embedded terminal, copies the Claude creds in, and hands the user one URL), start-promptworld, compile-a-world (the meta-compiler skill — the nomicon folds on itself), and ingest-into-nomicon-app.",
+  "description": "PromptWorld — the meta-compiler *World: a WrightMaster Engineer-CEO that has every skill plus a native subagent per component type (skill / mcp / harness / operating_system / prompt / team / workflow), and 7 PromptGym specialist AIOS agents, that compile / compose / publish prompt systems through the nomicon. Bundles the install-promptworld deploy WIZARD (the agent builds the docker image, boots the container running the Engineer-CEO + PromptGym + the assistant-ui chat / Monaco file explorer / embedded terminal, copies the Claude creds in, and hands the user one URL), compile-a-world (the meta-compiler skill — the nomicon folds on itself), and ingest-into-nomicon-app.",
   "author": {
     "name": "Isaac Rubin"
   }
