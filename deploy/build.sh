@@ -23,6 +23,23 @@ HOSTPORT="${2:-38588}"            # host-published port (E2E uses exec, so this 
 CTX="/tmp/pw-build-ctx"
 WS="/tmp/promptworld-workspace"   # a sample workspace docker-cp'd in at boot (no host bind mount)
 
+# stage_dep <ctx_subdir> <mono_path> <tier2_url>
+# DUAL-MODE dependency staging. If the monorepo path exists (our dev box), cp it (fast, the CURRENT
+# source). Otherwise (an EXTERNAL clone of the promptworld plugin, no private monorepo present),
+# git clone --depth 1 the published tier-2 public repo into the context. Either way the dep lands
+# at $CTX/<ctx_subdir> so the Dockerfile's COPY paths are identical for both modes.
+stage_dep() {
+  local sub="$1" mono="$2" url="$3"
+  if [ -d "$mono" ]; then
+    echo "[build]   $sub: cp from monorepo ($mono)"
+    cp -r "$mono" "$CTX/$sub"
+  else
+    echo "[build]   $sub: git clone --depth 1 $url (monorepo absent)"
+    git clone --depth 1 "$url" "$CTX/$sub"
+    rm -rf "$CTX/$sub/.git"
+  fi
+}
+
 stage_context() {
   echo "[build] staging context at $CTX ..."
   rm -rf "$CTX"; mkdir -p "$CTX"
@@ -67,9 +84,10 @@ stage_context() {
     # are real files, kept.
     find "$CTX/promptworld/promptgym" -type l -delete 2>/dev/null || true
   fi
-  cp -r "$MONO/doc-mirror-system/plugin"      "$CTX/doc-mirror-plugin"
-  cp -r "$MONO/application/cave"              "$CTX/cave"
-  cp -r "$MONO/base/sdna"                     "$CTX/sdna"
+  # DUAL-MODE deps: cp from the monorepo when present (our dev path), else clone the tier-2 repo.
+  stage_dep doc-mirror-plugin "$MONO/doc-mirror-system/plugin" "https://github.com/sancovp/doc-mirror.git"
+  stage_dep cave              "$MONO/application/cave"         "https://github.com/sancovp/cave.git"
+  stage_dep sdna              "$MONO/base/sdna"                "https://github.com/sancovp/sdna.git"
   find "$CTX/cave" "$CTX/sdna" "$CTX/doc-mirror-plugin" -name __pycache__ -type d -prune -exec rm -rf {} + 2>/dev/null || true
   find "$CTX/doc-mirror-plugin" -name '*.bak_*' -delete 2>/dev/null || true
   # NO creds are staged or baked — the image ships UNAUTHENTICATED. Auth arrives at boot via

@@ -1,12 +1,14 @@
 # PromptWorld V1 image.
-# Base = jobworld-cave:latest (the PROVEN CAVE-server image: claude CLI + node20 + python3.11 +
-# the cave/sdna/llegos/heaven stack that boots a CAVE HTTP server). PromptWorld forks
-# CAVEHTTPServer/CAVEAgent, so we refresh the CURRENT cave + sdna over the base, add the
-# promptworld app, build the SPA in-layer, and install doc-mirror by default.
+# Base = ghcr.io/sancovp/cave-harness-base (the NEUTRAL CAVE-server runtime: claude CLI + node20 +
+# python3.11 + the cave/sdna/cave-teams/llegos/heaven stack that boots a CAVE HTTP server, with NO
+# jobworld entrypoint/branding). PromptWorld and jobworld are SIBLING x-CAVE products on this shared
+# base — neither builds on the other's product image. PromptWorld forks CAVEHTTPServer/CAVEAgent, so
+# we refresh the CURRENT cave + sdna over the base, add the promptworld app, build the SPA in-layer,
+# and install doc-mirror by default.
 #
-# Build context is STAGED by deploy/build.sh (it COPYs across monorepo dirs): the context root
-# holds  promptworld/  doc-mirror-plugin/  cave/  sdna/ .
-FROM jobworld-cave:latest
+# Build context is STAGED by deploy/build.sh: the context root holds
+#   promptworld/  doc-mirror-plugin/  cave/  sdna/ .
+FROM ghcr.io/sancovp/cave-harness-base:v1.0.0
 
 USER root
 
