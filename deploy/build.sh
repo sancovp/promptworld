@@ -14,8 +14,13 @@
 # deploy/docker-compose.yml up  (compose bind-mounts ./workspace + your ~/.claude creds).
 set -euo pipefail
 
+# PW = the promptworld app root, derived from THIS script's location ($PW/deploy/build.sh) so it
+# works BOTH in the dev monorepo AND in a standalone clone of the promptworld plugin (external
+# install). MONO is only a DEV-MODE sentinel: stage_dep cp's deps from it when it exists, else it
+# clones the tier-2 public repos — so an external machine (no monorepo) builds via the clone path.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PW="$(dirname "$SCRIPT_DIR")"
 MONO="/home/GOD/gnosys-plugin-v2"
-PW="$MONO/application/promptworld"
 IMAGE="promptworld:latest"
 NAME="promptworld-v1"
 PORT="3858"                       # in-container server port (fixed)

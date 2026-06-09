@@ -2,6 +2,10 @@
 
 All notable publishes of this repo. Auto-maintained on publish.
 
+## pub6-build-sh-external-safe-v2 — 2026-06-09
+
+- Published from monorepo.
+
 ## pub6-cave-harness-base-v1 — 2026-06-09
 
 - Published from monorepo.
