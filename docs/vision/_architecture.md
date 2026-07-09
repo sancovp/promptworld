@@ -1,4 +1,0 @@
-# vision: gym (topic — auto-created by `journal`)
-
-<!-- ===VISION DELTA: id-tagged appends below = the gap (`vision diff <m>`); `doc-mirror-commit --realizes <ids>` drops them on build === -->
-- [v1]  2026-06-08T17:23:07  OPEN: OPEN (needs Isaac): the corrected Gym shape (agents research the things THEY make + users talk to those agents + dashboards) overturns the only written spec (Promptworld_Gym_Module_Conceptual_Spec 15:59, which is the wrong user-driven spec-CRUD frame). The unresolved fork: WHAT TRIGGERS an agent research run (does a specialist auto-research a component right after building it — a test/measure/iterate loop?) and WHAT IS THE USER SURFACE (per-build dashboard + chat-with-that-agent-about-its-research, vs a cross-build research feed)? That choice determines the data model + page. Do NOT auto-decide. Meanwhile continuing to M2 README (unblocked).  tags:[gym, promptworld, open, architecture]
