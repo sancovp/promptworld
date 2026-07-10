@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # PromptWorld V1 — build / boot / e2e / stop.
 #
-#   build.sh build           Stage a build context (promptworld + doc-mirror plugin + cave + sdna)
+#   build.sh build           Stage a build context (promptworld + doc-mirror plugin + cave + sdna
+#                            + the SkillTome system: framework pkg + skill2framework chain + tome)
 #                            and build the promptworld:latest image.
 #   build.sh boot [hostport] Boot a container (mind_of_god-safe: create -> docker cp creds +
 #                            workspace -> start; NO -v of mind_of_god paths).
@@ -93,6 +94,31 @@ stage_context() {
   stage_dep doc-mirror-plugin "$MONO/doc-mirror-system/plugin" "https://github.com/sancovp/doc-mirror.git"
   stage_dep cave              "$MONO/application/cave"         "https://github.com/sancovp/cave.git"
   stage_dep sdna              "$MONO/base/sdna"                "https://github.com/sancovp/sdna.git"
+  # THE SKILLTOME SYSTEM (Isaac 2026-07-10: PromptWorld is the first SkillWizard). Dual-mode:
+  # the framework glue package + the skill2framework chain skills come from the PUBLIC
+  # chaincompiler repo (the monorepo vendor copy when present); the TOME itself ships only from
+  # the dev monorepo (it is the author's corpus — an external build gets a pointer note instead).
+  if [ -d "$MONO/base/chaincompiler" ]; then
+    echo "[build]   chaincompiler(framework+skill2framework): cp from monorepo"
+    mkdir -p "$CTX/chaincompiler/packages" "$CTX/chaincompiler/skills"
+    cp -r "$MONO/base/chaincompiler/packages/framework" "$CTX/chaincompiler/packages/framework"
+    cp -r "$MONO/base/chaincompiler/skills/skill2framework" "$CTX/chaincompiler/skills/skill2framework"
+  else
+    echo "[build]   chaincompiler(framework+skill2framework): git clone --depth 1 (monorepo absent)"
+    git clone --depth 1 https://github.com/sancovp/chaincompiler.git "$CTX/.cc-full"
+    mkdir -p "$CTX/chaincompiler/packages" "$CTX/chaincompiler/skills"
+    cp -r "$CTX/.cc-full/packages/framework" "$CTX/chaincompiler/packages/framework"
+    cp -r "$CTX/.cc-full/skills/skill2framework" "$CTX/chaincompiler/skills/skill2framework"
+    rm -rf "$CTX/.cc-full"
+  fi
+  if [ -d "$MONO/tome" ]; then
+    echo "[build]   tome: cp from monorepo"
+    cp -r "$MONO/tome" "$CTX/tome"
+  else
+    echo "[build]   tome: monorepo absent — staging a pointer note (external builds carry the ops only)"
+    mkdir -p "$CTX/tome"
+    printf 'External build: the SkillTome ships with the dev monorepo (tome/); this build carries only the tome OPS.\nSee the wield-the-tome skill.\n' > "$CTX/tome/README.md"
+  fi
   find "$CTX/cave" "$CTX/sdna" "$CTX/doc-mirror-plugin" -name __pycache__ -type d -prune -exec rm -rf {} + 2>/dev/null || true
   find "$CTX/doc-mirror-plugin" -name '*.bak_*' -delete 2>/dev/null || true
   # NO creds are staged or baked — the image ships UNAUTHENTICATED. Auth arrives at boot via

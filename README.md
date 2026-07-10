@@ -6,26 +6,32 @@
 
 ⭐ 0 stars • 🕑 Updated 2026-07-09
 
+[Marketplace](https://github.com/sancovp/sancrev-marketplace) • [Docs](https://sancovp.github.io/aisaac/)
+
 📦 Auto-published from the monorepo • [CHANGELOG](./CHANGELOG.md) • [sancovp/promptworld](https://github.com/sancovp/promptworld)
 
 <!-- SCALABLE-PUBLISHING:AUTOGEN END -->
 
-**PromptWorld is a Claude-Code-native app for building Claude-Code-native software.**
+**PromptWorld is a Claude-Code-native app for building Claude-Code-native software — the first
+SkillWizard: an app whose agents wield the SkillTome.**
 
-You chat with one agent — the **Engineer-CEO** — and it builds the seven primitive component types that
+You chat with one agent — the **Archwizard** — and it builds the primitive component types that
 make up any Claude Code system (skills, MCP servers, prompts, harnesses, teams, workflows, operating
-systems), itself or by delegating to a specialist builder for each type. It runs as a single web app: a
+systems), itself or by delegating to a wizard for each craft. It runs as a single web app: a
 chat + a live file workbench + dashboards, served from one container.
 
-PromptWorld is also a **worked example of an app built over a "nomicon"** — the doc-mirror documentation /
-development operating system. Every agent in PromptWorld loads the **doc-mirror plugin**, so the whole app
-carries the ladder for turning a component into an AIOS into a framework and folding it back into the
-system. PromptWorld can **inspect its own structure** and explain, as a living example, how an app like it
-is built. It is also the **meta-compiler of patterns** (the `compile-a-world` skill): it treats every
-`*World` — JobWorld, GameWorld, HealthWorld, PromptWorld — as a named architecture pattern (a *World = a
-sim: a team-leader + specialists + a domain + a driver), so an agent can reuse a pattern or combine them
-into a new World/app and fold it up the nomicon ladder. (`*World` is a CAVE-fork *resemblance*, a way of
-doing this — not a rigid type; there is no push-button general generator yet, by design.)
+PromptWorld is a **worked example of an app built over a tome** ("nomicon" is the legacy name). Every
+agent loads the **doc-mirror plugin** plus the **SkillTome system** (`agent-skilltree` — the tome
+bind/projection ops; the `framework` package — the chapter-rung glue; the `skill2framework` chain at
+`/opt/skill2framework`; the author tome at `/opt/tome` on dev builds), so the whole app carries the
+ladder for turning a component into an AIOS into a framework (a **chapter**) and **folding it into the
+tome** — see the `wield-the-tome` skill. PromptWorld can **inspect its own structure** and explain, as
+a living example, how an app like it is built. It is also the **meta-compiler of patterns** (the
+`compile-a-world` skill): it treats every `*World` — JobWorld, GameWorld, HealthWorld, PromptWorld —
+as a named architecture pattern (a *World = a sim: a team-leader + specialists + a domain + a driver),
+so an agent can reuse a pattern or combine them into a new World/app and fold it up the tome ladder.
+(`*World` is a CAVE-fork *resemblance*, a way of doing this — not a rigid type; there is no
+push-button general generator yet, by design.)
 
 ---
 
@@ -36,7 +42,8 @@ PromptWorld ships as a Docker image built from the monorepo. From the app direct
 ```bash
 cd application/promptworld
 
-# 1. Build the image (stages promptworld + the doc-mirror plugin + cave + sdna, builds the SPA in-layer)
+# 1. Build the image (stages promptworld + the doc-mirror plugin + cave + sdna + the SkillTome
+#    system [framework pkg + skill2framework chain + tome], builds the SPA in-layer)
 bash deploy/build.sh build
 
 # 2. Boot a container on host port 3858 (mind_of_god-safe: create -> docker cp creds -> start)
@@ -62,40 +69,44 @@ the MiniMax provider token, not OAuth.
 
 ## What's inside (the architecture)
 
-### The World module — the CEO + seven specialist builders
+### The World module — the Archwizard + the eight wizards
 
-PromptWorld's **World module** is the guild that builds things:
+PromptWorld's **World module** is the tower that builds things:
 
-- the **Engineer-CEO** (`agents/engineer-ceo.md`) — the single agent you chat with. It has every skill and
-  one native subagent per component type, so it can build anything itself or delegate.
-- seven **specialist AIOS dirs** under `promptgym/<craft>/`, one per component type. Each is a directory
-  that *codes an agent* (its own `CLAUDE.md` + `.claude/rules` + `.claude/agents`), and each specialist
+- the **Archwizard** (`agents/engineer-ceo.md` — the file keeps its legacy name) — the single agent
+  you chat with; the wizard who wields the tome. It has every skill and one native subagent per
+  component type, so it can build anything itself or delegate.
+- eight **wizard AIOS dirs** under `promptgym/<craft>/`, one per component type. Each is a directory
+  that *codes an agent* (its own `CLAUDE.md` + `.claude/rules` + `.claude/agents`), and each wizard
   works ONLY in its own directory.
 
-| craft | builds | master |
+| craft | builds | wizard |
 |---|---|---|
-| `skill` | a SKILL (lean `SKILL.md` + `resources/`) | Skillwright |
-| `mcp` | an MCP server (FastMCP tools) | Toolwright |
-| `prompt` | a prompt / persona (a "guy" in a role) | Promptwright |
-| `harness` | a harness (sequenced typed outputs across a turn) | Harnesswright |
-| `team` | a team / subagent set on a shared task list | Teamwright |
-| `workflow` | a deterministic fan-out script (the Workflow tool) | Flowwright |
-| `operating_system` | an AI OS (a directory + core loop that governs) | Systemwright |
+| `skill` | a SKILL (lean `SKILL.md` + `resources/`) | Skillwizard |
+| `mcp` | an MCP server (FastMCP tools) | Toolwizard |
+| `prompt` | a prompt / persona (a "guy" in a role) | Promptwizard |
+| `harness` | a harness (sequenced typed outputs across a turn) | Harnesswizard |
+| `team` | a native TeamCreate team on a shared task list | Teamwizard |
+| `cave_team` | a cave-team (programmatic, mixed-model, headless, watchable) | Cave Teamwizard |
+| `workflow` | a deterministic fan-out script (the Workflow tool) | Flowwizard |
+| `operating_system` | an AI OS (a directory + core loop that governs) | Systemwizard |
 
 The shared, re-skinnable world description lives in `promptgym/world-context.md`; the shared global agent
 context in `promptgym/global-context.md`.
 
-### The nomicon ladder (what makes PromptWorld an app-over-a-nomicon)
+### The tome ladder (what makes PromptWorld a SkillWizard)
 
-Every PromptWorld agent loads the **doc-mirror plugin**, which carries the rungs:
+Every PromptWorld agent loads the **doc-mirror plugin** plus the **tome ops**, which carry the rungs:
 
 ```
-component  ->  AIOS  ->  framework  ->  fold-into-nomicon  ->  app
+component  ->  AIOS  ->  framework (chapter)  ->  fold-into-tome  ->  app (SkillWizard)
 ```
 
-as real skills/CLIs (`make-ai-operating-system`, the `skill2framework` prompt-tree, `nomicon-atomize`,
-`ship-a-plugin`, and the app-rung skill). Ask the CEO *"how is PromptWorld built / what is the nomicon"*
-and it inspects its own dirs and explains itself as the example.
+as real skills/CLIs (`make-ai-operating-system`, the `skill2framework` chain, `skilltree fold` /
+`skilltree project` (the tome bind + flat-projection ops; `nomicon-atomize` is the legacy projector),
+`ship-a-plugin`, `wield-the-tome`, and the app-rung skill `ingest-into-tome-app`). Ask the Archwizard
+*"how is PromptWorld built / what is the tome"* and it inspects its own dirs and explains itself as
+the example.
 
 ### The web app (the SPA)
 
@@ -135,10 +146,11 @@ build-and-ship skills.
 
 Everything an agent *is* lives in editable files in this app — editing an agent's dir IS editing that agent:
 
-- **The CEO's voice/role** → `agents/engineer-ceo.md`.
-- **A specialist's behavior** → `promptgym/<craft>/CLAUDE.md` + `promptgym/<craft>/.claude/rules/*.md`.
-- **The shared world** (re-theme the whole guild — Smiths, a crew, etc.) → `promptgym/world-context.md`
-  (one neutral file every agent @-references) + each persona's voice file.
+- **The Archwizard's voice/role** → `agents/engineer-ceo.md` (the file keeps its legacy name).
+- **A wizard's behavior** → `promptgym/<craft>/CLAUDE.md` + `promptgym/<craft>/.claude/rules/*.md`.
+- **The shared world** (the current theme is the Wizards' Tower; re-theme freely — Smiths, a crew,
+  etc.) → `promptgym/world-context.md` (one file every agent @-references) + each persona's voice file
+  + `promptgym/agent_personas.json` (the display names/avatars).
 - **The shared global context** → `promptgym/global-context.md`.
 
 The Monaco workbench on the **Main** page is pointed at the app itself, so you can edit these dirs live.
@@ -163,8 +175,8 @@ researcher, so auto-research is disabled for team specs — see the in-app note.
 
 ```
 application/promptworld/
-  agents/engineer-ceo.md         the CEO persona
-  promptgym/<craft>/             the seven specialist AIOS dirs (skill, mcp, prompt, harness, team, workflow, operating_system)
+  agents/engineer-ceo.md         the Archwizard persona (legacy filename)
+  promptgym/<craft>/             the eight wizard AIOS dirs (skill, mcp, prompt, harness, team, cave_team, workflow, operating_system)
   promptgym/world-context.md     the shared, re-skinnable world
   promptgym/global-context.md    the shared global agent context
   server/                        FastAPI server, file API, conversation/group/gym/automation registries

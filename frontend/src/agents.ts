@@ -23,6 +23,7 @@ export const SPECIALISTS: AgentDef[] = [
   { alias: "operating_system", label: "Operating System", color: "#ef4444" },
   { alias: "prompt", label: "Prompt", color: "#06b6d4" },
   { alias: "team", label: "Team", color: "#ec4899" },
+  { alias: "cave_team", label: "Cave Team", color: "#e3b341" },
   { alias: "workflow", label: "Workflow", color: "#84cc16" },
 ];
 

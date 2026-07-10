@@ -2,6 +2,10 @@
 
 All notable publishes of this repo. Auto-maintained on publish.
 
+## 068c5495 — 2026-07-10
+
+- Published from monorepo.
+
 ## pub6-build-sh-external-safe-v2 — 2026-06-09
 
 - Published from monorepo.

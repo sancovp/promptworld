@@ -1,11 +1,39 @@
 {
-  "_comment": "Per-agent DISPLAY NAME + AVATAR config (V2 #48). HOT-RELOADING: the server reads this live on each profile request (no restart, not baked into code) — edit a name or avatar filename here and it takes effect immediately, unless a user has set their own via the profile editor (a user override always wins). Avatars are filenames under promptgym/avatars/. Re-theme freely (Smiths/Djinni/...) by editing this file + each persona's promptgym/<type>/CLAUDE.md voice.",
-  "ceo": { "name": "CEO", "avatar": "ceo.png" },
-  "skill": { "name": "Skillwright", "avatar": "skill.png" },
-  "mcp": { "name": "Toolwright", "avatar": "mcp.png" },
-  "prompt": { "name": "Promptwright", "avatar": "prompt.png" },
-  "harness": { "name": "Harnesswright", "avatar": "harness.png" },
-  "team": { "name": "Teamwright", "avatar": "team.png" },
-  "workflow": { "name": "Flowwright", "avatar": "workflow.png" },
-  "operating_system": { "name": "Systemwright", "avatar": "operating_system.png" }
+ "_comment": "Per-agent DISPLAY NAME + AVATAR config (V2 #48). HOT-RELOADING: the server reads this live on each profile request (no restart, not baked into code) \u2014 edit a name or avatar filename here and it takes effect immediately, unless a user has set their own via the profile editor (a user override always wins). Avatars are filenames under promptgym/avatars/. Current theme: the Wizards' Tower (Isaac 2026-07-10 \u2014 the app is the first SkillWizard; roles are Wizards, not Wrights). Re-theme freely by editing this file + each persona's promptgym/<type>/CLAUDE.md voice.",
+ "ceo": {
+  "name": "Archwizard",
+  "avatar": "ceo.png"
+ },
+ "skill": {
+  "name": "Skillwizard",
+  "avatar": "skill.png"
+ },
+ "mcp": {
+  "name": "Toolwizard",
+  "avatar": "mcp.png"
+ },
+ "prompt": {
+  "name": "Promptwizard",
+  "avatar": "prompt.png"
+ },
+ "harness": {
+  "name": "Harnesswizard",
+  "avatar": "harness.png"
+ },
+ "team": {
+  "name": "Teamwizard",
+  "avatar": "team.png"
+ },
+ "cave_team": {
+  "name": "Cave Teamwizard",
+  "avatar": "team.png"
+ },
+ "workflow": {
+  "name": "Flowwizard",
+  "avatar": "workflow.png"
+ },
+ "operating_system": {
+  "name": "Systemwizard",
+  "avatar": "operating_system.png"
+ }
 }

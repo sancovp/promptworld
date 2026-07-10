@@ -1,0 +1,8 @@
+{
+  "domain": "CAVE",
+  "subdomain": "cave-teams",
+  "category": "single_turn_process",
+  "what": "Spin up a programmatic agent TEAM on the fly from a spec — mixed Claude-Code (claude -p, subscription) leaders + cheap MiniMax workers — with a LIVE WEB GALLERY showing each agent in its own window as it works. cave-teams is a STANDALONE library (claude -p + MiniMax + files; no running CAVE required); its event seam optionally streams to the gallery, a CAVE Channel, or Discord. Adaptor = build_team / spawn_team; frontend = python -m cave_teams.frontend.",
+  "when": "When you need to launch a sub-team to do parallel/heterogeneous work and watch it live. Equip when spawning a team, unequip when done.",
+  "describes_component": "cave-teams"
+}

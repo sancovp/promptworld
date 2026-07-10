@@ -15,6 +15,7 @@ What's kept:
 Inherited from CAVEHTTPServer (the base): /health, /exec, /output, /input, /state, etc.
 """
 import logging
+import os
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict
@@ -72,9 +73,33 @@ class PromptWorldHTTPServer(CAVEHTTPServer):
         self._register_agent_profile_routes()
         self._register_automation_routes()
         self._register_conversation_routes()
+        self._register_cave_teams_bridge()
         self._register_websocket()
         self._register_terminal_ws()
         self._mount_frontend()
+
+        # Point cave-teams (spawned by the Cave Teamwizard) at THIS server's bridge, so a spawned
+        # team streams INTO this gallery's Cave Teamwizard window. The gym agent's `spawn_team`
+        # subprocess inherits this env. setdefault → an explicit user override still wins.
+        os.environ.setdefault("CAVE_TEAMS_GALLERY", f"http://127.0.0.1:{port}/api/cave-teams")
+
+    def _register_cave_teams_bridge(self):
+        """POST /api/cave-teams/emit — a spawned cave-team's events → the Cave Teamwizard window.
+
+        cave-teams' HttpFrontendListener POSTs each TeamEvent here ($CAVE_TEAMS_GALLERY/emit); we
+        translate it to claude-stream events (cave_teams_bridge.map_event) and broadcast on /ws to
+        alias `cave_team`, so the team unfolds live in PromptWorld's one gallery. Fire-and-forget.
+        """
+        from . import cave_teams_bridge as ctb
+
+        @self.app.post("/api/cave-teams/emit")
+        async def cave_teams_emit(ev: Dict[str, Any] = Body(...)):
+            try:
+                for alias, cev in ctb.map_event(ev):
+                    self.pw.broadcast_event(alias, cev)
+            except Exception:
+                pass
+            return {"ok": True}
 
     def _agent_for_alias(self, alias: str):
         """Resolve the ClaudePMainAgent backing a chat alias, for its registry (conversations) + cwd

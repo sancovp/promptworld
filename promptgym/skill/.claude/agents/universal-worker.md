@@ -1,0 +1,1 @@
+/home/GOD/gnosys-plugin-v2/application/promptworld/promptgym/universal-worker.md

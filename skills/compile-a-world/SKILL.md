@@ -1,6 +1,6 @@
 ---
 name: compile-a-world
-description: "WHAT: PromptWorld's meta-compiler skill — the architecture patterns + worked examples for building a *World (a sim app = a team-leader + a specialist set + a domain + a driver) such as JobWorld, GameWorld, HealthWorld, or PromptWorld itself, plus how to reuse one pattern, combine them into a new World/app, and compose+publish it over the nomicon. WHEN: when the user (or the CEO/WrightMaster) says 'compile/build/make a World', 'make a new jobworld/gameworld/healthworld', 'what World patterns are there / how is a World built', 'turn this into an app / a sim', 'meta-compiler', 'world compiler', or wants to scaffold a CAVE-fork sim app or fold one into the nomicon (any of)."
+description: "WHAT: PromptWorld's meta-compiler skill — the architecture patterns + worked examples for building a *World (a sim app = a team-leader + a specialist set + a domain + a driver) such as JobWorld, GameWorld, HealthWorld, or PromptWorld itself, plus how to reuse one pattern, combine them into a new World/app, and compose+publish it over the nomicon. WHEN: when the user (or the Archwizard) says 'compile/build/make a World', 'make a new jobworld/gameworld/healthworld', 'what World patterns are there / how is a World built', 'turn this into an app / a sim', 'meta-compiler', 'world compiler', or wants to scaffold a CAVE-fork sim app or fold one into the nomicon (any of)."
 ---
 
 # compile-a-world — the *World meta-compiler
@@ -15,8 +15,8 @@ are stated here in full.)
 
 Every "*World" is the **same shape** — a simulation run by a team:
 
-- **team-leader** — the one agent that orchestrates (a CEO / Game Master / WrightMaster).
-- **specialists** — the worker agents it coordinates (departments / crafters / *Wrights).
+- **team-leader** — the one agent that orchestrates (a CEO / Game Master / Archwizard).
+- **specialists** — the worker agents it coordinates (departments / crafters / Wizards).
 - **domain** — what the sim is *about* (an org, a game economy, a body, claude-code components).
 - **driver** — what makes a turn happen (real-world events, an internal game loop, your records,
   build requests).
@@ -32,7 +32,7 @@ of doing this. The patterns below are the vocabulary; the objective (bottom) is 
 | **JobWorld** | CEO of departments | departments | running an org | heartbeats/events from automations about the **real world** |
 | **GameWorld** | **Game Master** | crafters/traders (peers in a market) | an economic/trading game around craftable things | the **internal game loop** (craft → trade → score) |
 | **HealthWorld** | a CEO-for-your-body (Osmosis-Jones) | body-system agents | your health | your **records + stats** → holistic analyses |
-| **PromptWorld** | the **WrightMaster** (the CEO) | the **\*Wrights** (skill/mcp/prompt/harness/team/workflow/operating_system) | building Claude-Code components & nomicons | **build requests** → the \*Wrights work a nomicon together |
+| **PromptWorld** | the **Archwizard** | the **Wizards** (skill/mcp/prompt/harness/team/workflow/operating_system) | building Claude-Code components & nomicons | **build requests** → the Wizards work a nomicon together |
 
 Two structural axes distinguish them:
 - **topology**: a hierarchy/org (a leader dispatches specialists — Job/Health/Prompt) vs a **peer

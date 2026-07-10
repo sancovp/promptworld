@@ -46,19 +46,19 @@ Each pattern is `{team-leader, specialists, domain, driver, topology, how a new 
   healthworld cant idk") — it's a hand-forked instance.
 
 ## PromptWorld — the reactor / meta
-- **team-leader**: the **WrightMaster** (currently still named "CEO" — rename pending).
-- **specialists**: the seven **\*Wrights** — one per Claude-Code component type (skill, mcp, prompt,
-  harness, team, workflow, operating_system), each a `promptgym/<craft>/` **AIOS dir that codes the
+- **team-leader**: the **Archwizard** (the role once called the CEO / WrightMaster).
+- **specialists**: the eight **Wizards** — one per Claude-Code component type (skill, mcp, prompt,
+  harness, team, cave_team, workflow, operating_system), each a `promptgym/<craft>/` **AIOS dir that codes the
   agent** (its own `CLAUDE.md` + `.claude/`).
 - **domain**: building Claude-Code components and **nomicons** — and, as the meta, building/composing
   the **other Worlds** as patterns.
-- **driver**: **build requests** — the WrightMaster calls the \*Wrights to work a nomicon together.
+- **driver**: **build requests** — the Archwizard calls the Wizards to work a nomicon together.
 - **topology**: hierarchy/org, BUT the cleanest substrate: `claude_agent_sdk` per-directory isolated
   AIOS agents + it **carries the nomicon ladder** + a re-skinnable `world-context.md`. Domain is clean
   **config**, not a tangled subclass.
-- **the only real difference from the others**: PromptWorld's **team isn't hooked up yet** (the CEO
+- **the only real difference from the others**: PromptWorld's **team isn't hooked up yet** (the Archwizard
   doesn't yet *run* the team the way Job/Health/Game leaders do). That is a wiring gap to close, NOT
-  an architectural divide. With the meta-compiler, the WrightMaster should run the team.
+  an architectural divide. With the meta-compiler, the Archwizard should run the team.
 - **how built**: a CAVE fork (`PromptWorldAgent(CAVEAgent)` + `PromptWorldHTTPServer`), forked from
   HealthWorld, then re-based onto the SDK + nomicon. **Is the meta-compiler**: treats all the above as
   patterns; can build them as AIOS+Teams variants, compose into apps, publish.
@@ -72,9 +72,9 @@ Each pattern is `{team-leader, specialists, domain, driver, topology, how a new 
 + injectable .claude/{skills,rules,agents} + a dashboard + a deploy }`.
 
 **Per-World (the slots a World spec fills)**:
-- `team-leader role` (CEO | Game Master | WrightMaster | Doctor)
+- `team-leader role` (CEO | Game Master | Archwizard | Doctor)
 - `topology` (org-hierarchy | peer-market)
-- `specialist set` (departments | crafters | \*Wrights | body-systems)
+- `specialist set` (departments | crafters | Wizards | body-systems)
 - `domain` (the content + state schema)
 - `driver` (real-world automation events | internal game loop | records/stats | build requests)
 - `dashboard` + `deploy`

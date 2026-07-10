@@ -206,9 +206,10 @@ class PromptWorldAgent(CAVEAgent):
             logger.exception("CEO subagent provisioning failed (non-fatal)")
 
         # (2) PromptWorld-LOCAL skills: symlink each subdir of <promptworld_dir>/skills/ into the
-        # CEO's project-level .claude/skills/ so the CEO discovers them (e.g. compile-a-world =
-        # the *World meta-compiler, ingest-into-nomicon-app = the app-rung). doc-mirror skills come
-        # from the plugin (plugins=); THESE are the app's own skills. Idempotent, best-effort.
+        # CEO's project-level .claude/skills/ so the Archwizard discovers them (e.g. compile-a-world
+        # = the *World meta-compiler, wield-the-tome = the SkillTome ops, ingest-into-tome-app =
+        # the app-rung). doc-mirror skills come from the plugin (plugins=); THESE are the app's own
+        # skills. Idempotent, best-effort.
         try:
             skills_src = self.promptworld_dir / "skills"
             if skills_src.is_dir():

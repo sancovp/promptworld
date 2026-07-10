@@ -37,9 +37,11 @@ try:  # package-relative (application.promptworld.promptgym)
 except ImportError:  # script / standalone (run from the promptworld root)
     from p_main_agent import ClaudePMainAgent
 
-# The 7 claude-code component types. Each has an AIOS directory promptgym/<type>/.
+# The claude-code component types. Each has an AIOS directory promptgym/<type>/.
+# `cave_team` is the Cave Teamwizard: builds + calls cave-teams (the programmatic, mixed-model,
+# watchable teams library) — distinct from `team` (the native TeamCreate Teamwizard).
 COMPONENT_TYPES: List[str] = [
-    "skill", "mcp", "harness", "operating_system", "prompt", "team", "workflow",
+    "skill", "mcp", "harness", "operating_system", "prompt", "team", "cave_team", "workflow",
 ]
 
 # promptgym/ lives next to this file (application/promptworld/promptgym/).

@@ -35,6 +35,26 @@ element-exists trap; "it looks professional in the PNG" is the bar. (Library com
 extra piece for the visual — e.g. assistant-ui MarkdownText needs a syntax-highlighter wired in + prose
 styling; per `use-libraries-at-maximum-never-hand-roll`, wire ALL of it.)
 
+## GEOMETRY IS PART OF THE BAR — render at the REAL viewport + check every region FILLS its correct part of the frame
+"Styled" and "elements exist" are NOT enough — the LAYOUT must be geometrically correct: every region occupies
+its CORRECT part of the frame, edges ALIGN, proportions are right, and there are NO dead empty bands. This is the
+failure that shipped: on Main/Specialist a fixed-width column layout left a ~15% DEAD BLACK BAND down the right
+of the frame, the Monaco editor pane was a thin sliver instead of filling the remaining width, and the bottom
+Terminal bar spanned full-width while the panels above stopped short (right edges DID NOT line up). The commander
+opened the PNG and waved it through as "professional" because the elements looked styled — never checking the
+geometry. NON-NEGOTIABLE additions to every render-verify round:
+1. **Render at a REAL, REPRESENTATIVE full viewport** — the size a user actually opens (e.g. 1920x1080 AND a
+   narrower 1366x768), not a cropped/odd headless default. Layout bugs only appear at the real frame size.
+2. **Assert the layout FILLS the frame:** the outermost content container's right edge ≈ viewport width (no dead
+   band); the flexible pane (the Monaco editor) actually grows to fill remaining width (assert its width is a
+   large fraction of the frame, not a fixed sliver); the bottom bar's right edge ALIGNS with the content above
+   it (compare bounding-box `right` values — they must match within a few px).
+3. **Commander opens the PNG and explicitly judges GEOMETRY:** scan for dead/empty regions, misaligned edges,
+   panes that are too narrow/too wide, things not in the part of the frame they belong. "Is every region in the
+   right place and filling its share of the frame?" — if no, it FAILS even if every element is present + styled.
+Prefer flex/grid that fills the viewport over fixed-px columns; a fixed-px column is the usual cause of the dead
+band. The bar is: a user at full screen sees a frame with NO wasted space and aligned edges.
+
 ## Each round writes a FRESH screenshot filename (or overwrites) + assert its mtime is current
 A stale screenshot from a prior round, left at a reused filename, can be opened and mislead the visual
 check into "still broken" (or "still fixed") when the code has changed. So: every verification round writes

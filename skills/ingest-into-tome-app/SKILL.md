@@ -1,11 +1,16 @@
 ---
-name: ingest-into-nomicon-app
-description: "WHAT: the PromptWorld app-rung — a single flow that ingests an existing Claude-Code system directory (a dir of AIOSes / skills / rules / CLAUDE.mds), converts it into its own {name}-nomicon (the author's framework-of-frameworks holder/search/router), and agentifies that nomicon into a standalone sidecar PromptWorld app (a CEO that carries the nomicon as its world-model, with the ingested AIOS dirs as its specialist agents). It WIRES the already-existing pieces (ingest = copy into the workspace; convert = the skill2framework→fold-into-nomicon pipeline; agentify = PromptWorld scoped to the nomicon) into one drop-dir→get-app flow. WHEN: when the user says 'ingest this claude-code dir', 'turn this system into an app / a webapp', 'make a {name}-nomicon from this', 'convert this dir into its own app', 'app-rung', or wants a Claude-Code directory packaged as a runnable sidecar PromptWorld with an AIOS (any of)."
+name: ingest-into-tome-app
+description: "WHAT: the PromptWorld app-rung — a single flow that ingests an existing Claude-Code system directory (a dir of AIOSes / skills / rules / CLAUDE.mds), converts it into its own {name}-nomicon (the author's SkillTome — the framework-of-frameworks holder/search/router), and agentifies that tome into a standalone sidecar PromptWorld app (a CEO that carries the tome as its world-model, with the ingested AIOS dirs as its specialist agents). It WIRES the already-existing pieces (ingest = copy into the workspace; convert = the skill2framework→fold-into-tome pipeline; agentify = PromptWorld scoped to the tome) into one drop-dir→get-app flow. WHEN: when the user says 'ingest this claude-code dir', 'turn this system into an app / a webapp', 'make a {name}-nomicon from this', 'convert this dir into its own app', 'app-rung', or wants a Claude-Code directory packaged as a runnable sidecar PromptWorld with an AIOS (any of)."
 ---
-# ingest-into-nomicon-app — drop a Claude-Code dir → get a sidecar PromptWorld app
+# ingest-into-tome-app — drop a Claude-Code dir → get a sidecar PromptWorld app
 
-This is the **top rung of the nomicon ladder** (`info → prompt → skill → rules → AIOS → framework →
-fold-into-nomicon → APP`). Everything below this rung already exists and is dogfooded E2E; this skill is the
+("nomicon" is the legacy name; this skill was ingest-into-nomicon-app.)
+
+This is the **top rung of the tome ladder** (`info → prompt → skill → rules → AIOS → framework →
+fold-into-tome → APP`). The produced artifacts keep the PROVEN `{NAME}-nomicon` naming conventions
+below (the dogfooded my-way pipeline) — the tome-vocabulary artifact names arrive when the DIY chain
+(`skilltree fold`) replaces the my-way fold in this flow. Everything below this rung already exists
+and is dogfooded E2E; this skill is the
 **orchestration** that composes them into one flow. You run THREE stages in order. Each stage's heavy lifting
 is a canonical piece you DISPATCH — you are the orchestrator, not the hands.
 
@@ -46,7 +51,7 @@ searching the prompt-store and dispatching each prompt-skill with its specifics:
    OVERRIDE its output name to `{AUTHOR}-framework-{aios}` (per the pinned names above), NOT `{aios}-nomicon`.
 5. `skill2framework/plugin/package-framework-plugin` — the self-contained framework plugin (its skill dir =
    the framework skill's real frontmatter name `{AUTHOR}-framework-{aios}`, not the prompt's hardcoded default).
-6. `skill2framework/nomicon/fold-into-nomicon` — fold the framework into the holder (create it if absent;
+6. `skill2framework/tome/fold-into-tome` (the stage's current name/path; was `nomicon/fold-into-nomicon`) — fold the framework into the holder (create it if absent;
    idempotent one row per framework). Pass `{user}=AUTHOR`, `{nomicon_dir}=<app>/nomicon/{NAME}-nomicon`.
 
 Then project the held frameworks flat so agents auto-discover them — into the DISTINCT deploy dir:
