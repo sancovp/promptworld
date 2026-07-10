@@ -13,6 +13,11 @@ FROM ghcr.io/sancovp/cave-harness-base:v1.0.0
 USER root
 
 # --- refresh CURRENT cave + sdna so the promptworld fork matches (our packages -> --no-deps) ---
+# universal-chain-ontology first: current sdna imports `uco` (its Link/Chain primitives). The
+# import name is uco but the DISTRIBUTION is universal-chain-ontology — NEVER `pip install uco`,
+# that PyPI name is squatted by an unrelated placeholder. Without this, sdna fails to import and
+# cave's anatomy degraded path crashes the server on a Heartbeat NameError (found 2026-07-10).
+RUN pip install --no-cache-dir --no-deps 'universal-chain-ontology>=0.1.0'
 COPY cave/ /tmp/cave/
 COPY sdna/ /tmp/sdna/
 RUN pip install --no-cache-dir --no-deps /tmp/cave/ /tmp/sdna/ \
