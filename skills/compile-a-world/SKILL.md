@@ -32,7 +32,7 @@ of doing this. The patterns below are the vocabulary; the objective (bottom) is 
 | **JobWorld** | CEO of departments | departments | running an org | heartbeats/events from automations about the **real world** |
 | **GameWorld** | **Game Master** | crafters/traders (peers in a market) | an economic/trading game around craftable things | the **internal game loop** (craft → trade → score) |
 | **HealthWorld** | a CEO-for-your-body (Osmosis-Jones) | body-system agents | your health | your **records + stats** → holistic analyses |
-| **PromptWorld** | the **Archwizard** | the **Wizards** (skill/mcp/prompt/harness/team/workflow/operating_system) | building Claude-Code components & nomicons | **build requests** → the Wizards work a nomicon together |
+| **PromptWorld** | the **Archwizard** | the **Wizards** (skill/mcp/prompt/harness/team/cave_team/workflow/operating_system) | building Claude-Code components & tomes | **build requests** → the Wizards work the tome together |
 
 Two structural axes distinguish them:
 - **topology**: a hierarchy/org (a leader dispatches specialists — Job/Health/Prompt) vs a **peer
