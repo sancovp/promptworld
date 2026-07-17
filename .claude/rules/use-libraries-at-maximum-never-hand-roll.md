@@ -1,17 +1,8 @@
-# Use Named Libraries At Their MAXIMUM — Never Hand-Roll What They Ship Prebuilt — NON-NEGOTIABLE
+# Use Named Libraries At Their MAXIMUM — Never Hand-Roll What They Ship Prebuilt
 
 When a library is specified for a job (e.g. **assistant-ui** for the chat), USE ITS FULL PREBUILT POWER
 at the maximum quality level that exists. If something custom/minimal were wanted, the instruction would
 be "make X." Naming a library = "use this library properly, completely, at its best."
-
-## The failure this prevents (it kept happening)
-- Installed only **`@assistant-ui/react`** (the HEADLESS primitives) and then **hand-rolled** markdown
-  (raw `react-markdown` + remark + rehype) and the chat styling (custom CSS) — reinventing exactly what
-  assistant-ui ships prebuilt. WRONG. assistant-ui provides, OUT OF THE BOX:
-  - **`@assistant-ui/react-markdown`** → the **`MarkdownText`** component = markdown + highlighted code
-    blocks, prebuilt. USE IT for the message text part. Do NOT hand-roll react-markdown.
-  - its **styled `Thread`** (shadcn/Tailwind component layer) = composer, bubbles, tool cards, scroll —
-    prebuilt. USE IT. Do NOT hand-roll a Thread + custom CSS.
 
 ## The rules
 1. **Install + use the library's PREBUILT component layer**, not just its headless core. If only the
@@ -27,7 +18,4 @@ be "make X." Naming a library = "use this library properly, completely, at its b
    (the Monaco editor) are separate and may be custom — but THOSE also use their best real source (see
    `porting-heaven-components-rewire-fileservice-to-api-files`).
 
-## Why
-Hand-rolling what a maintained library provides is lower-quality, less complete, and unmaintainable — and
-it is the exact "minimal stub instead of maximum" failure that forces the user to iterate. Use the library
-at full power, version-coherent, every time.
+→ Why / history / how-to behind this rule: read the `understand-promptworld-rules` skill.

@@ -1,4 +1,4 @@
-# A Frontend Dev Agent Works By A RECURSIVE Playwright Screenshot → LOOK → Edit Loop — That IS The Method — NON-NEGOTIABLE
+# A Frontend Dev Agent Works By A RECURSIVE Playwright Screenshot → LOOK → Edit Loop — That IS The Method
 
 A frontend developer agent does NOT build by editing code, asserting on the DOM, and reporting. It builds the
 way a human frontend dev does — and the way every multimodal LLM should: a **tight recursive visual loop** where
@@ -28,11 +28,4 @@ driver, not a final check.** The agent is a multimodal model: it can `Read` a PN
   the edits; it is not a closing checkbox.
 - **NOT** "report screenshots for the commander to open instead of looking yourself." YOU look, every loop.
 
-## Why
-A frontend agent that edits-then-asserts-DOM ships layouts with dead bands, sliver panes, and misaligned edges —
-because the DOM "existing" says nothing about whether the page LOOKS right, and the agent never looked. The only
-method that produces a correct UI is the same loop a human uses and that a multimodal model is built for: render,
-LOOK, edit, render, LOOK — recursively — until your own eyes on the actual screenshot confirm it. The looking is
-the work, every iteration. (Composes with `verify-frontend-by-rendering-not-bundle-grep` — that rule is the
-geometry/quality BAR you judge each screenshot against; THIS rule is that you must be in the screenshot-look-edit
-loop continuously, not just at the end. The commander then does the same as a final gate before it reaches Isaac.)
+→ Why / history / how-to behind this rule: read the `understand-promptworld-rules` skill.

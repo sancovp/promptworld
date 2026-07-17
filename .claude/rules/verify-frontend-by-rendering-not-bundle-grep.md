@@ -1,4 +1,4 @@
-# Verify Frontend Work By RENDERING The Page, Never By Grepping The Bundle — NON-NEGOTIABLE
+# Verify Frontend Work By RENDERING The Page, Never By Grepping The Bundle
 
 A frontend's real surface is the **RENDERED PAGE IN A BROWSER**, not strings in a built JS/CSS file.
 "The class name / the import is in the bundle" proves NOTHING about whether the UI renders, looks right,
@@ -16,13 +16,6 @@ To verify ANY frontend change, RENDER it and look:
    - **ZERO console/page errors.**
 4. The **commander OPENS the screenshots** (Read the PNG) and judges them at the professional/maximum bar
    before redeploying. A passing screenshot is the only evidence of "done" for UI.
-
-## Honest constraint in THIS env
-You cannot render headless INSIDE the jobworld-cave container (no chromium) nor reach the host-published
-port from mind_of_god (netns isolation). So render the **byte-identical `dist`** (confirm the served bundle
-hashes match the local dist by vite content-hash) via a local server + headless chromium. State that
-provenance honestly; the final on-screen judgment is the user's, but the render is the floor — never ship
-on bundle-grep.
 
 ## A DOM element EXISTING is NOT the same as it being STYLED — judge the VISUAL result
 A DOM assertion like "`pre code` exists" or "`ul li` = 3" proves the markup is there — it does **NOT**
@@ -61,8 +54,4 @@ check into "still broken" (or "still fixed") when the code has changed. So: ever
 its PNG to a fresh/overwritten path, and whoever opens it confirms the file's mtime is from THIS round
 before judging it. Old screenshots are retired, never left to be re-read.
 
-## Why
-Bundle-grep passed three broken UI rounds in a row (terminal that didn't collapse, skeleton styles, Monaco
-that never rendered) while reporting "verified" — and DOM-element-exists passed two more (unstyled markdown)
-while it looked unstyled. Rendering + screenshot + judging the VISUAL appearance is the only check that
-reflects what the user actually sees. Composes with `verify-via-user-surface-before-done`.
+→ Why / history / how-to behind this rule: read the `understand-promptworld-rules` skill.
