@@ -2,9 +2,9 @@
 
 <!-- SCALABLE-PUBLISHING:AUTOGEN START (managed block — do not edit between these markers) -->
 
-![Stars](https://img.shields.io/github/stars/sancovp/promptworld.svg?style=social) ![Updated](https://img.shields.io/badge/updated-2026_08_12-lightgrey.svg)
+![Stars](https://img.shields.io/github/stars/sancovp/promptworld.svg?style=social) ![Updated](https://img.shields.io/badge/updated-2026_08_13-lightgrey.svg)
 
-⭐ 1 stars • 🕑 Updated 2026-08-12
+⭐ 1 stars • 🕑 Updated 2026-08-13
 
 📦 Auto-published from the monorepo • [CHANGELOG](./CHANGELOG.md) • [sancovp/promptworld](https://github.com/sancovp/promptworld)
 
