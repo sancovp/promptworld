@@ -1,6 +1,6 @@
 ---
 name: install-promptworld
-description: "WHAT: the deploy WIZARD for PromptWorld — YOU (the agent) build the docker image and boot a container running the whole system (the Engineer-CEO that has every skill + a native subagent per component type, the 7 PromptGym specialist agents, the assistant-ui chat + Monaco file explorer + an embedded terminal), find the Claude credentials on THIS machine, copy them into the container at boot, and then just hand the user a URL. WHEN: when the user wants to install / run / launch / boot / spin up / deploy PromptWorld, or says 'set up promptworld', 'start promptworld', 'boot the promptworld container' (any of)."
+description: "WHAT: the deploy WIZARD for PromptWorld — YOU (the agent) build the docker image and boot a container running the whole system (the Engineer-CEO that has every skill + a native subagent per component type, the 8 PromptGym specialist agents, the assistant-ui chat + Monaco file explorer + an embedded terminal), find the Claude credentials on THIS machine, copy them into the container at boot, and then just hand the user a URL. WHEN: when the user wants to install / run / launch / boot / spin up / deploy PromptWorld, or says 'set up promptworld', 'start promptworld', 'boot the promptworld container' (any of)."
 ---
 
 # install-promptworld — the agent's deploy how-to
@@ -15,7 +15,7 @@ socket, because it needs no `-v` bind mount of a local path).
 A single `promptworld:latest` container, on port 3858, serving:
 - the **Engineer-CEO** (claude -p) — has every skill + a native subagent per component type
   (skill / mcp / harness / operating_system / prompt / team / workflow);
-- the **7 PromptGym specialist** AIOS agents (each scoped to its own `promptgym/<type>/` directory);
+- the **8 PromptGym specialist** AIOS agents (each scoped to its own `promptgym/<type>/` directory);
 - the **assistant-ui** chat SPA + the **Monaco** file explorer over `/workspace` + an embedded
   **xterm terminal** (`/ws/terminal` → a PTY shell as `ceo`);
 - **doc-mirror** installed for every agent. Journal is file-only (`DOCMIRROR_CARTON=0`) — no DB.
