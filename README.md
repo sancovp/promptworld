@@ -6,6 +6,8 @@
 
 ⭐ 2 stars • 🕑 Updated 2026-10-17
 
+[Marketplace](https://github.com/sancovp/sancrev-marketplace) • [Docs](https://sancovp.github.io/aisaac/)
+
 📦 Auto-published from the monorepo • [CHANGELOG](./CHANGELOG.md) • [sancovp/promptworld](https://github.com/sancovp/promptworld)
 
 <!-- SCALABLE-PUBLISHING:AUTOGEN END -->
@@ -20,7 +22,7 @@ chat + a live file workbench + dashboards, served from one container.
 
 PromptWorld is a **worked example of an app built over a tome** ("nomicon" is the legacy name). Every
 agent loads the **doc-mirror plugin** plus the **SkillTome system** (`agent-skilltree` — the tome
-bind/projection ops; the `framework` package — the chapter-rung glue; the `skill2framework` chain at
+bind/projection ops; the `skill2framework` package — the chapter-rung glue; the `skill2framework` chain at
 `/opt/skill2framework`; the author tome at `/opt/tome` on dev builds), so the whole app carries the
 ladder for turning a component into an AIOS into a framework (a **chapter**) and **folding it into the
 tome** — see the `wield-the-tome` skill. PromptWorld can **inspect its own structure** and explain, as
@@ -41,7 +43,7 @@ PromptWorld ships as a Docker image built from the monorepo. From the app direct
 cd application/promptworld
 
 # 1. Build the image (stages promptworld + the doc-mirror plugin + cave + sdna + the SkillTome
-#    system [framework pkg + skill2framework chain + tome], builds the SPA in-layer)
+#    system [skill2framework pkg + skill2framework chain + tome], builds the SPA in-layer)
 bash deploy/build.sh build
 
 # 2. Boot a container on host port 3858 (mind_of_god-safe: create -> docker cp creds -> start)

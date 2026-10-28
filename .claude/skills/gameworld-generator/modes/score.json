@@ -1,0 +1,48 @@
+{
+  "mode_id": "score",
+  "mode_name": "Score Mode",
+  "mode_version": "1.0",
+  "description": "Benchmark against a max attainable score. Earn by completing benchmarks. Gold = score. No spending — just the chase.",
+
+  "core": {
+    "earn": {
+      "mechanism": "benchmark",
+      "actions": ["benchmark_submit", "benchmark_claim"],
+      "description": "Submit work for benchmark scoring, claim score rewards"
+    },
+    "spend": {
+      "mechanism": "none",
+      "actions": [],
+      "description": "No spending — gold is pure score indicator"
+    },
+    "craft_type": "site",
+    "distribution": "individual",
+    "self_assessment": true
+  },
+
+  "execute_includes": [
+    "benchmark_submit",
+    "benchmark_claim",
+    "learn"
+  ],
+
+  "execute_excludes": [
+    "trade_post",
+    "trade_buy",
+    "quest_accept",
+    "quest_complete"
+  ],
+
+  "starting_gold": 0,
+
+  "quest_definitions": [
+    { "quest_id": "first_benchmark", "file": "things/quests/first_benchmark.md", "include": true },
+    { "quest_id": "quality_benchmark", "file": "things/quests/quality_benchmark.md", "include": true }
+  ],
+
+  "season_config": {
+    "reset_trade_board": false,
+    "carry_gold": false,
+    "max_attainable": 300
+  }
+}

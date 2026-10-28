@@ -1,0 +1,50 @@
+{
+  "mode_id": "wos",
+  "mode_name": "Way of the Craftsperson",
+  "mode_version": "1.0",
+  "description": "Quest, trade, craft skills. The complete economy.",
+
+  "core": {
+    "earn": {
+      "mechanism": "quest_plus_trade",
+      "actions": ["quest_accept", "quest_complete", "trade_buy"],
+      "description": "Quest rewards + trade profits"
+    },
+    "spend": {
+      "mechanism": "trade",
+      "actions": ["trade_post", "trade_buy"],
+      "description": "Spend gold at the trade post for skills"
+    },
+    "craft_type": "skill",
+    "distribution": "individual",
+    "self_assessment": false
+  },
+
+  "execute_includes": [
+    "quest_accept",
+    "quest_complete",
+    "trade_post",
+    "trade_buy",
+    "learn",
+    "challenge"
+  ],
+
+  "execute_excludes": [
+    "benchmark",
+    "submit_to_showcase"
+  ],
+
+  "starting_gold": 100,
+
+  "quest_definitions": [
+    { "quest_id": "first_skill", "file": "things/quests/first_skill.md", "include": true },
+    { "quest_id": "first_trade", "file": "things/quests/first_trade.md", "include": true },
+    { "quest_id": "rare_skill", "file": "things/quests/rare_skill.md", "include": true },
+    { "quest_id": "sell_to_deity", "file": "things/quests/sell_to_deity.md", "include": true }
+  ],
+
+  "season_config": {
+    "reset_trade_board": true,
+    "carry_gold": false
+  }
+}

@@ -94,20 +94,20 @@ stage_context() {
   stage_dep doc-mirror-plugin "$MONO/doc-mirror-system/plugin" "https://github.com/sancovp/doc-mirror.git"
   stage_dep cave              "$MONO/application/cave"         "https://github.com/sancovp/cave.git"
   stage_dep sdna              "$MONO/base/sdna"                "https://github.com/sancovp/sdna.git"
-  # THE SKILLTOME SYSTEM (Isaac 2026-07-10: PromptWorld is the first SkillWizard). Dual-mode:
-  # the framework glue package + the skill2framework chain skills come from the PUBLIC
+  # THE SKILLTOME SYSTEM (the author's ruling: PromptWorld is the first SkillWizard). Dual-mode:
+  # the skill2framework glue package + the skill2framework chain skills come from the PUBLIC
   # chaincompiler repo (the monorepo vendor copy when present); the TOME itself ships only from
   # the dev monorepo (it is the author's corpus — an external build gets a pointer note instead).
   if [ -d "$MONO/base/chaincompiler" ]; then
-    echo "[build]   chaincompiler(framework+skill2framework): cp from monorepo"
+    echo "[build]   chaincompiler(skill2framework package + skills): cp from monorepo"
     mkdir -p "$CTX/chaincompiler/packages" "$CTX/chaincompiler/skills"
-    cp -r "$MONO/base/chaincompiler/packages/framework" "$CTX/chaincompiler/packages/framework"
+    cp -r "$MONO/base/chaincompiler/packages/skill2framework" "$CTX/chaincompiler/packages/skill2framework"
     cp -r "$MONO/base/chaincompiler/skills/skill2framework" "$CTX/chaincompiler/skills/skill2framework"
   else
-    echo "[build]   chaincompiler(framework+skill2framework): git clone --depth 1 (monorepo absent)"
+    echo "[build]   chaincompiler(skill2framework package + skills): git clone --depth 1 (monorepo absent)"
     git clone --depth 1 https://github.com/sancovp/chaincompiler.git "$CTX/.cc-full"
     mkdir -p "$CTX/chaincompiler/packages" "$CTX/chaincompiler/skills"
-    cp -r "$CTX/.cc-full/packages/framework" "$CTX/chaincompiler/packages/framework"
+    cp -r "$CTX/.cc-full/packages/skill2framework" "$CTX/chaincompiler/packages/skill2framework"
     cp -r "$CTX/.cc-full/skills/skill2framework" "$CTX/chaincompiler/skills/skill2framework"
     rm -rf "$CTX/.cc-full"
   fi

@@ -1,0 +1,34 @@
+{
+  "game_id": "base",
+  "tick": 0,
+  "season": {
+    "number": 1,
+    "title": "Season of First Steps",
+    "started_at": null,
+    "previous_season": null,
+    "rarity_consensus": {
+      "common": "Basic capability, works as described",
+      "uncommon": "Demonstrates technique, not just output",
+      "rare": "Shows genuine novelty or sophistication",
+      "epic": "Stacked composition with emergent properties"
+    },
+    "max_attainable": null
+  },
+  "agents": {
+    "AGENT_PLACEHOLDER": {
+      "gold": 100,
+      "xp": 0,
+      "quests_completed": 0,
+      "trades_completed": 0,
+      "benchmarks_completed": 0,
+      "last_action": null,
+      "last_action_at": null
+    }
+  },
+  "trade_board": [],
+  "trade_history": [],
+  "quest_log": {},
+  "benchmark_log": {},
+  "achievements": {},
+  "deity_bulletin": []
+}

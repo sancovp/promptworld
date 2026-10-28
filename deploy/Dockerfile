@@ -39,15 +39,15 @@ RUN pip install --no-cache-dir 'mcp==1.12.4' 'claude-agent-sdk==0.1.19'
 # croniter` works, pydantic STAYS 2.10.6, `import cave.server.cave_http_server` still works — no cascade.]
 RUN pip install --no-cache-dir 'croniter==2.0.7'
 
-# --- the SkillTome system (Isaac 2026-07-10: PromptWorld is the FIRST SKILLWIZARD — an app whose
+# --- the SkillTome system (the author's ruling: PromptWorld is the FIRST SKILLWIZARD — an app whose
 #     agents wield the tome). agent-skilltree = the tome bind/projection ops (`skilltree fold` /
-#     `project` / `validate`; >=0.3.0 carries skilltree.tome.fold). framework = the chapter-rung
+#     `project` / `validate`; >=0.3.0 carries skilltree.tome.fold). skill2framework = the chapter-rung
 #     glue (JourneyCore/render_blog1, assemble_chapter, package_plugin, fold_into_tome).
 #     /opt/skill2framework = the 6-stage chain skills + the compiled rollup. /opt/tome = the author
 #     tome (dev builds; external builds get a pointer note — see the wield-the-tome skill). ---
 COPY chaincompiler/ /tmp/chaincompiler/
 RUN pip install --no-cache-dir 'agent-skilltree>=0.3.0' \
- && pip install --no-cache-dir --no-deps /tmp/chaincompiler/packages/framework \
+ && pip install --no-cache-dir --no-deps /tmp/chaincompiler/packages/skill2framework \
  && mkdir -p /opt/skill2framework \
  && cp -r /tmp/chaincompiler/skills/skill2framework/. /opt/skill2framework/ \
  && rm -rf /tmp/chaincompiler

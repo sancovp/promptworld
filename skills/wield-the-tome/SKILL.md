@@ -29,7 +29,7 @@ rows in a generated `## Frameworks` table. ("nomicon" is the legacy name for vol
   framework as a row — idempotent, one row per framework) · `skilltree project <tree> <target>
   --policy flat|progressive` (deploy: flat = every held framework auto-discovers as a
   top-level skill; progressive = root + branches behind Read-breadcrumbs).
-- **`framework`** (python): `JourneyCore` + `render_blog1` (fill the model, never hand-write
+- **`skill2framework`** (python): `JourneyCore` + `render_blog1` (fill the model, never hand-write
   the narrative) · `assemble_chapter` · `package_plugin` · `fold_into_tome` (delegates to
   `skilltree.tome.fold`).
 
